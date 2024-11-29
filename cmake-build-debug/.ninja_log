@@ -1,0 +1,7 @@
+# ninja log v6
+30	64	1732877025243714451	CMakeFiles/main_executable.dir/main.cpp.o	59cb5ee1780a280c
+65	104	1732877025278715723	/home/obiektowecpp/Desktop/cpp_ABC/libs/libcpp_ABC_lib.so	813cc702e624b89c
+0	30	1732877025213713359	CMakeFiles/cpp_ABC_lib.dir/libs/SequenceClass.cpp.o	ffc152d09fac3479
+1	47	1732877166100397416	build.ninja	49f0afed850f43a7
+6	645	1732877202135469105	CMakeFiles/cpp_ABC.dir/main.cpp.o	55cf4e16940af1c3
+646	812	1732877202775487723	cpp_ABC	5add865b1d2bf260

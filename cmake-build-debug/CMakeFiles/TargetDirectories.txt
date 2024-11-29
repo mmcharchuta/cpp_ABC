@@ -1,0 +1,3 @@
+/home/obiektowecpp/Desktop/cpp_ABC/cmake-build-debug/CMakeFiles/cpp_ABC.dir
+/home/obiektowecpp/Desktop/cpp_ABC/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/obiektowecpp/Desktop/cpp_ABC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
