@@ -65,3 +65,15 @@ std::unordered_map<char, int> Sequence::count() {
     }
     return charCount;
 }
+
+std::string Sequence::complementary() {
+    std::string compSeq = sequence;
+    for (char& base : compSeq) {
+        base = complementMap[base];
+    }
+    return compSeq;
+}
+
+void Sequence::change_to(const std::string& new_sequence) {
+    sequence = new_sequence;
+}

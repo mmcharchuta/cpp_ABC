@@ -27,6 +27,11 @@ public:
     // Method returns reversed sequence
     std::string get_reverse();
 
+    //Method returns the complementary sequence
+    std::string complementary();
+
+    //Method replaces the current sequence with a new one (after getting_reverse/complementary)
+    void change_to(const std::string& new_sequence);
 
 };
 
