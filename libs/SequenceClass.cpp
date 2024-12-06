@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
+#include <algorithm>
 // complementMap is created here only temporary
 Sequence::Sequence() {
     complementMap['A'] = 'T';
@@ -74,6 +74,3 @@ std::string Sequence::complementary() {
     return compSeq;
 }
 
-void Sequence::change_to(const std::string& new_sequence) {
-    sequence = new_sequence;
-}

@@ -1,0 +1,6 @@
+# ninja log v5
+1	1154	7551826847824864	CMakeFiles/cpp_ABC.dir/main.cpp.obj	9e36a1aaa99e6f92
+5	2335	7551827827134445	CMakeFiles/cpp_ABC.dir/libs/SequenceClass.cpp.obj	25e1f9432e97e8af
+2336	2658	7551827830353765	cpp_ABC.exe	3977cf37307ca698
+4	1127	7551829158482679	CMakeFiles/cpp_ABC.dir/main.cpp.obj	9e36a1aaa99e6f92
+1128	1395	7551829161093913	cpp_ABC.exe	3977cf37307ca698
