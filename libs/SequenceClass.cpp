@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 // complementMap is created here only temporary
 Sequence::Sequence() {
@@ -64,3 +65,12 @@ std::unordered_map<char, int> Sequence::count() {
     }
     return charCount;
 }
+
+std::string Sequence::complementary() {
+    std::string compSeq = sequence;
+    for (char& base : compSeq) {
+        base = complementMap[base];
+    }
+    return compSeq;
+}
+
