@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+
 // complementMap is created here only temporary
 Sequence::Sequence() {
     complementMap['A'] = 'T';
