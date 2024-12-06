@@ -47,8 +47,7 @@ void Sequence::readFASTA(const std::string& filepath){
 std::string Sequence::get_reverse() {
     std::string reverseSeq = sequence;
     std::reverse (reverseSeq.begin(), reverseSeq.end());
-    return reverseSeq;
-    }
+    return reverseSeq;    }
 
 
 std::unordered_map<char, int> Sequence::count() {

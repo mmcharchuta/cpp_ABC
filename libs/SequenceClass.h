@@ -27,6 +27,8 @@ public:
     // Method returns reversed sequence
     std::string get_reverse();
 
+    std::string get_rev_comp();
+
 
 };
 
