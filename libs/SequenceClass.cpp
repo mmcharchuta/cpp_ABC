@@ -27,16 +27,14 @@ void Sequence::readFASTA(const std::string& filepath){
       return;
     }
     std::string line;
-    bool isHeader = true;
 
     while (std::getline(file, line)) {
         if (line.empty()) {
             continue;
         }
 
-        if (isHeader && line[0] == '>') {
+        if ( line[0] == '>') {
             header = line.substr(1);
-            isHeader = false;
         } else {
             sequence += line;
         }
@@ -44,12 +42,6 @@ void Sequence::readFASTA(const std::string& filepath){
 
     file.close();
 }
-
-std::string Sequence::get_reverse() {
-    std::string reverseSeq = sequence;
-    std::reverse (reverseSeq.begin(), reverseSeq.end());
-    return reverseSeq;    }
-
 
 std::unordered_map<char, int> Sequence::count() {
     std::unordered_map<char, int> charCount;
@@ -66,11 +58,17 @@ std::unordered_map<char, int> Sequence::count() {
     return charCount;
 }
 
-std::string Sequence::complementary() {
+std::string Sequence::get_complementary() {
     std::string compSeq = sequence;
-    for (char& base : compSeq) {
-        base = complementMap[base];
+    std::string result;
+    for (int i = 0 ; i < compSeq.length(); i ++) {
+        result += complementMap[compSeq[i]];
     }
-    return compSeq;
+    return result;
 }
 
+std::string Sequence::get_rev_comp() {
+    std::string Seq = get_complementary();
+    std::reverse (Seq.begin(), Seq.end());
+    return Seq;
+}
