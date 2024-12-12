@@ -24,15 +24,11 @@ public:
     // the sequence attribute. It depends on complementMap attribute.
     std::unordered_map<char, int> count();
 
-    // Method returns reversed sequence
-    std::string get_reverse();
+    // Method returns reversed complementary sequence
+    std::string get_rev_comp();
 
     //Method returns the complementary sequence
-    std::string complementary();
-
-    //Method replaces the current sequence with a new one (after getting_reverse/complementary)
-    void change_to(const std::string& new_sequence);
-
+    std::string get_complementary();
 };
 
 #endif //SEQUENCECLASS_H
