@@ -2,25 +2,25 @@
 // Created by obiektowecpp on 29.11.24.
 //
 
-#include "SequenceClass.h"
+#include "Seq.h"
 #include <string>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
 
 // complementMap is created here only temporary
-Sequence::Sequence() {
+Seq::Seq() {
     complementMap['A'] = 'T';
     complementMap['T'] = 'A';
     complementMap['C'] = 'G';
     complementMap['G'] = 'C';
 }
 
-Sequence::Sequence(const std::string& filepath) {
+Seq::Seq(const std::string& filepath) {
     readFASTA(filepath);
 };
 
-void Sequence::readFASTA(const std::string& filepath){
+void Seq::readFASTA(const std::string& filepath){
     std::ifstream file(filepath);
     if (!file.is_open()) {
       std::cerr << filepath << " cannot be opend" << std::endl;
@@ -43,7 +43,7 @@ void Sequence::readFASTA(const std::string& filepath){
     file.close();
 }
 
-std::unordered_map<char, int> Sequence::count() {
+std::unordered_map<char, int> Seq::count() {
     std::unordered_map<char, int> charCount;
 
     for (const auto& pair : complementMap) {
@@ -58,7 +58,7 @@ std::unordered_map<char, int> Sequence::count() {
     return charCount;
 }
 
-std::string Sequence::get_complementary() {
+std::string Seq::get_complementary() {
     std::string compSeq = sequence;
     std::string result;
     for (int i = 0 ; i < compSeq.length(); i ++) {
@@ -67,7 +67,7 @@ std::string Sequence::get_complementary() {
     return result;
 }
 
-std::string Sequence::get_rev_comp() {
+std::string Seq::get_rev_comp() {
     std::string Seq = get_complementary();
     std::reverse (Seq.begin(), Seq.end());
     return Seq;

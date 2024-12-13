@@ -2,20 +2,25 @@
 // Created by obiektowecpp on 29.11.24.
 //
 
-#ifndef SEQUENCECLASS_H
-#define SEQUENCECLASS_H
+#ifndef SEQ_H
+#define SEQU_H
 #include <string>
 #include <unordered_map>
 
-class Sequence {
+class Seq {
 protected:
     std::unordered_map<char, char> complementMap;
 public:
     std::string header;
     std::string sequence;
+    //std::validate();
+    //indexOf(Seq, s); Seq("AGG")
+    //indexOf(string s); "ACCCG";
+    //toDNA();
+    //toRNA();
 
-    Sequence();
-    Sequence(const std::string& filepath);
+    Seq();
+    Seq(const std::string& filepath);
 
     // Method reads single sequence and its header from FASTA file
     void readFASTA(const std::string& filepath);
@@ -31,4 +36,4 @@ public:
     std::string get_complementary();
 };
 
-#endif //SEQUENCECLASS_H
+#endif //SEQ_H
