@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-
+using namespace seq;
 string Seq::getHeader() const {
     return header;
 }

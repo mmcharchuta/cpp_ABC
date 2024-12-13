@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Seq.h>
 using namespace std;
+using namespace seq;
 int main()
 {
     Seq sequence;
