@@ -13,12 +13,12 @@ string Seq::getSequence() const {
     return sequence;
 }
 
-// complementMap is created here only temporary
+// compMap is created here only temporary
 Seq::Seq() {
-    complementMap['A'] = 'T';
-    complementMap['T'] = 'A';
-    complementMap['C'] = 'G';
-    complementMap['G'] = 'C';
+    compMap['A'] = 'T';
+    compMap['T'] = 'A';
+    compMap['C'] = 'G';
+    compMap['G'] = 'C';
 }
 
 Seq::Seq(const string& filepath) {
@@ -51,29 +51,29 @@ void Seq::readFASTA(const string& filepath){
 unordered_map<char, int> Seq::count() {
     unordered_map<char, int> charCount;
 
-    for (const auto& pair : complementMap) {
+    for (const auto& pair : compMap) {
         charCount[pair.first] = 0;
     }
 
     for (const char& base : sequence) {
-        if (complementMap.find(base) != complementMap.end()) {
+        if (compMap.find(base) != compMap.end()) {
             charCount[base]++;
         }
     }
     return charCount;
 }
 
-string Seq::get_complementary() {
+string Seq::get_comp() {
     string compSeq = sequence;
     string result;
     for (int i = 0 ; i < compSeq.length(); i ++) {
-        result += complementMap[compSeq[i]];
+        result += compMap[compSeq[i]];
     }
     return result;
 }
 
 string Seq::get_rev_comp() {
-    string Seq = get_complementary();
+    string Seq = get_comp();
     reverse (Seq.begin(), Seq.end());
     return Seq;
 }

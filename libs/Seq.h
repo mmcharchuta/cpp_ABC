@@ -6,7 +6,7 @@ using namespace std;
 
 class Seq {
 protected:
-    unordered_map<char, char> complementMap;
+    unordered_map<char, char> compMap;
     string header;
     string sequence;
 public:
@@ -20,10 +20,10 @@ public:
     void readFASTA(const string& filepath);
 
     // Method returns an unordered map, where the key is the character, and the value is the count of its occurrences in
-    // the sequence attribute. It depends on complementMap attribute.
+    // the sequence attribute. It depends on compMap attribute.
     unordered_map<char, int> count();
     string get_rev_comp();
-    string get_complementary();
+    string get_comp();
 };
 
 #endif //SEQ_H // End the conditional inclusion
