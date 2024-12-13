@@ -1,91 +1,76 @@
 #include "Seq.h"
-#include <string>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
-using namespace std;
-using namespace seq;
-// compMap is created here only temporary
-Seq::Seq() {
-    compMap['A'] = 'T';
-    compMap['T'] = 'A';
-    compMap['C'] = 'G';
-    compMap['G'] = 'C';
-}
 
-Seq::Seq(const string& filepath) {
-    readFASTA(filepath);
-};
-Seq::~Seq() {
-    // empty destructor stub... what should go in here?
-}
-string Seq::getHeader() const {
-    return header;
-}
+namespace seq {
 
-Seq *Seq::setHeader(string newHeader) {
-    this->header = newHeader;
-    return this;
-}
+    Seq::Seq() : header(""), sequence("") {}
 
-string Seq::getSequence() const {
-    return sequence;
-}
-
-Seq *Seq::setSequence(string newSequence) {
-    this->sequence = newSequence;
-    return this;
-}
-
-void Seq::readFASTA(const string& filepath){
-    ifstream file(filepath);
-    if (!file.is_open()) {
-      cerr << filepath << " cannot be opened" << endl;
-      return;
+    Seq::Seq(const string& filepath) {
+        readFASTA(filepath);
     }
-    string line;
 
-    while (getline(file, line)) {
-        if (line.empty()) {
-            continue;
+    string Seq::getHeader() const {
+        return header;
+    }
+
+    Seq* Seq::setHeader(string newHeader) {
+        header = newHeader;
+        return this;
+    }
+
+    string Seq::getSequence() const {
+        return sequence;
+    }
+
+    Seq* Seq::setSequence(string newSequence) {
+        sequence = newSequence;
+        return this;
+    }
+
+    void Seq::readFASTA(const string& filepath) {
+        ifstream file(filepath);
+        if (!file.is_open()) {
+            cerr << filepath << " cannot be opened" << endl;
+            return;
+        }
+        string line;
+
+        while (getline(file, line)) {
+            if (line.empty()) continue;
+
+            if (line[0] == '>') {
+                header = line.substr(1);
+            } else {
+                sequence += line;
+            }
         }
 
-        if ( line[0] == '>') {
-            header = line.substr(1);
-        } else {
-            sequence += line;
-        }
+        file.close();
     }
 
-    file.close();
-}
-
-unordered_map<char, int> Seq::count() {
-    unordered_map<char, int> charCount;
-
-    for (const auto& pair : compMap) {
-        charCount[pair.first] = 0;
-    }
-
-    for (const char& base : sequence) {
-        if (compMap.find(base) != compMap.end()) {
+    unordered_map<char, int> Seq::count() {
+        unordered_map<char, int> charCount;
+        for (char base : sequence) {
             charCount[base]++;
         }
+        return charCount;
     }
-    return charCount;
-}
 
-string Seq::get_comp() {
-    string compSeq = sequence;
-    string result;
-    for (int i = 0 ; i < compSeq.length(); i ++) {
-        result += compMap[compSeq[i]];
+    string Seq::get_comp() {
+        unordered_map<char, char> compMap = getCompMap();
+        string result;
+        for (char base : sequence) {
+            result += compMap[base];
+        }
+        return result;
     }
-    return result;
-}
 
-string Seq::get_rev_comp() {
-    string Seq = get_comp();
-    reverse (Seq.begin(), Seq.end());
-    return Seq;
-}
+    string Seq::get_rev_comp() {
+        string compSeq = get_comp();
+        reverse(compSeq.begin(), compSeq.end());
+        return compSeq;
+    }
+
+} // namespace seq

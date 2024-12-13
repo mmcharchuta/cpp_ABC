@@ -1,23 +1,25 @@
 #include <iostream>
-#include <Seq.h>
+#include "DNA.h"
+#include "RNA.h"
 
 using namespace std;
 using namespace seq;
 
-int main()
-{
-    Seq* sequence = Seq()
-        .setSequence("ACGGTA")
-        ->setHeader("> ape");
-    cout<< "Seq: " << sequence->getSequence() << endl;
+int main() {
+    // Test DNA class
+    DNA dnaSeq;
+    dnaSeq.setSequence("AAAACCCGGT");
+    cout << "DNA Sequence: " << dnaSeq.getSequence() << endl;
+    cout << "Valid DNA: " << (dnaSeq.validate() ? "Yes" : "No") << endl;
+    cout << "Complementary DNA: " << dnaSeq.get_comp() << endl;
+    cout << "Reverse complementary DNA: " << dnaSeq.get_rev_comp() << endl;
+    // Test RNA class
+    RNA rnaSeq;
+    rnaSeq.setSequence("AUGCAUG");
+    cout << "RNA Sequence: " << rnaSeq.getSequence() << endl;
+    cout << "Valid RNA: " << (rnaSeq.validate() ? "Yes" : "No") << endl;
+    cout << "Complementary RNA: " << rnaSeq.get_comp() << endl;
+    cout << "Reverse complementary RNA: " << rnaSeq.get_rev_comp() << endl;
 
-    cout << "Or even: " << Seq()
-                                .setSequence("GGCTC")
-                                ->setHeader("> L'enfant terrible") << endl;
-    // Seq sequence;
-    // // string filepath = "/home/mmcharchuta/CLionProjects/cpp_ABC/test.fasta"; // Absolute path
-    // // sequence.readFASTA(filepath);
-    // cout << "Header: " << sequence.getHeader() << endl;
-    // cout << "Sequence: " << sequence.getSequence() << endl;
     return 0;
 }

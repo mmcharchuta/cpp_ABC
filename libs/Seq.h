@@ -1,5 +1,6 @@
-#ifndef SEQ_H // If SEQ_H is not already defined
-#define SEQU_H  // Define SEQ_H (this will prevent multiple inclusions)
+#ifndef SEQ_H
+#define SEQ_H
+
 #include <string>
 #include <unordered_map>
 using namespace std;
@@ -7,30 +8,27 @@ using namespace std;
 namespace seq {
     class Seq {
     protected:
-        unordered_map<char, char> compMap;
         string header;
         string sequence;
+        unordered_map<char, char> compMap;  // compMap is declared here, but not initialized
+
     public:
-        Seq();
-        virtual ~Seq();
-        // Method reads single sequence and its header from FASTA file
-        void readFASTA(const string& filepath);
         string getHeader() const;
         Seq* setHeader(string newHeader);
         string getSequence() const;
         Seq* setSequence(string newSequence);
+
+        Seq();
         Seq(const string& filepath);
 
+        virtual bool validate() const = 0;
+        virtual unordered_map<char, char> getCompMap() const = 0;
 
-
-        // Method returns an unordered map, where the key is the character, and the value is the count of its occurrences in
-        // the sequence attribute. It depends on compMap attribute.
+        void readFASTA(const string& filepath);
         unordered_map<char, int> count();
         string get_rev_comp();
         string get_comp();
     };
 }
 
-
-
-#endif //SEQ_H // End the conditional inclusion
+#endif // SEQ_H
