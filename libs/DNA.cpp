@@ -23,4 +23,13 @@ namespace seq {
         return compMap;
     }
 
+    string DNA::toRNA() const {
+        string rnaSequence = sequence;
+        for (char& base : rnaSequence) {
+            if (base == 'T') {
+                base = 'U';  // Replace T with U (for RNA)
+            }
+        }
+        return rnaSequence;
+    }
 } // namespace seq
