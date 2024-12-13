@@ -11,14 +11,17 @@ namespace seq {
         string header;
         string sequence;
     public:
-        string getHeader() const;
-        string getSequence() const;
-
         Seq();
-        Seq(const string& filepath);
-
+        virtual ~Seq();
         // Method reads single sequence and its header from FASTA file
         void readFASTA(const string& filepath);
+        string getHeader() const;
+        Seq* setHeader(string newHeader);
+        string getSequence() const;
+        Seq* setSequence(string newSequence);
+        Seq(const string& filepath);
+
+
 
         // Method returns an unordered map, where the key is the character, and the value is the count of its occurrences in
         // the sequence attribute. It depends on compMap attribute.

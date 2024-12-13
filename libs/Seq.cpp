@@ -5,14 +5,6 @@
 #include <algorithm>
 using namespace std;
 using namespace seq;
-string Seq::getHeader() const {
-    return header;
-}
-
-string Seq::getSequence() const {
-    return sequence;
-}
-
 // compMap is created here only temporary
 Seq::Seq() {
     compMap['A'] = 'T';
@@ -24,6 +16,26 @@ Seq::Seq() {
 Seq::Seq(const string& filepath) {
     readFASTA(filepath);
 };
+Seq::~Seq() {
+    // empty destructor stub... what should go in here?
+}
+string Seq::getHeader() const {
+    return header;
+}
+
+Seq *Seq::setHeader(string newHeader) {
+    this->header = newHeader;
+    return this;
+}
+
+string Seq::getSequence() const {
+    return sequence;
+}
+
+Seq *Seq::setSequence(string newSequence) {
+    this->sequence = newSequence;
+    return this;
+}
 
 void Seq::readFASTA(const string& filepath){
     ifstream file(filepath);
