@@ -1,9 +1,5 @@
-//
-// Created by obiektowecpp on 29.11.24.
-//
-
-#ifndef SEQ_H
-#define SEQU_H
+#ifndef SEQ_H // If SEQ_H is not already defined
+#define SEQU_H  // Define SEQ_H (this will prevent multiple inclusions)
 #include <string>
 #include <unordered_map>
 using namespace std;
@@ -11,14 +7,11 @@ using namespace std;
 class Seq {
 protected:
     unordered_map<char, char> complementMap;
-public:
     string header;
     string sequence;
-    //validate();
-    //indexOf(Seq, s); Seq("AGG")
-    //indexOf(string s); "ACCCG";
-    //toDNA();
-    //toRNA();
+public:
+    string getHeader() const;
+    string getSequence() const;
 
     Seq();
     Seq(const string& filepath);
@@ -37,4 +30,4 @@ public:
     string get_complementary();
 };
 
-#endif //SEQ_H
+#endif //SEQ_H // End the conditional inclusion

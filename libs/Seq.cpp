@@ -1,13 +1,18 @@
-//
-// Created by obiektowecpp on 29.11.24.
-//
-
 #include "Seq.h"
 #include <string>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
 using namespace std;
+
+string Seq::getHeader() const {
+    return header;
+}
+
+string Seq::getSequence() const {
+    return sequence;
+}
+
 // complementMap is created here only temporary
 Seq::Seq() {
     complementMap['A'] = 'T';
@@ -23,7 +28,7 @@ Seq::Seq(const string& filepath) {
 void Seq::readFASTA(const string& filepath){
     ifstream file(filepath);
     if (!file.is_open()) {
-      cerr << filepath << " cannot be opend" << endl;
+      cerr << filepath << " cannot be opened" << endl;
       return;
     }
     string line;
