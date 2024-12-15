@@ -10,7 +10,9 @@ file(GLOB SOURCES main.cpp libs/*.cpp)
 # Create the executable with all source files from libs folder
 add_executable(cpp_ABC ${SOURCES}
         libs/DNA.h
-        libs/RNA.h
         libs/DNA.cpp
+        libs/RNA.h
         libs/RNA.cpp
+        libs/Prot.h
+        libs/Prot.cpp
 )

@@ -18,7 +18,7 @@ namespace seq {
     Seq* Seq::setHeader(string newHeader) {
         header = newHeader;
         return this;
-    }
+   }
 
     string Seq::getSequence() const {
         return sequence;
