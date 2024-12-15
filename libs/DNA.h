@@ -9,7 +9,6 @@ namespace seq {
         DNA();
         bool validate() const override;
         unordered_map<char, char> getCompMap() const override;
-
         string toRNA() const;
     };
 }

@@ -1,7 +1,9 @@
 #include "Prot.h"
 
+using namespace std; // Allow direct use of standard library components (e.g., string, unordered_map, cout).
+
 namespace seq {
-    // Initialize the codon table.
+    // Initialize the codon table
     void Prot::initializeCodonTable() {
         codonTable = {
             {"UUU", 'F'}, {"UUC", 'F'}, {"UUA", 'L'}, {"UUG", 'L'},
@@ -23,20 +25,40 @@ namespace seq {
         };
     }
 
-    // Constructor that initializes the codon table.
-    Prot::Prot() {
+    // Constructor
+    Prot::Prot() : Seq() { // Call the base class constructor
         initializeCodonTable();
     }
 
-    // Translate RNA into a protein string.
-    std::string Prot::translate(const std::string& rna) {
-        std::string protein = "";
+    // Translate RNA to protein
+    string Prot::translate(const string& rna) {
+        string protein = "";
         for (size_t i = 0; i < rna.size(); i += 3) {
-            std::string codon = rna.substr(i, 3);
+            string codon = rna.substr(i, 3);
             if (codonTable[codon] == '\0') // Stop codon
                 break;
             protein += codonTable[codon];
         }
         return protein;
+    }
+
+    // Validate the protein sequence (ensure all characters are valid amino acids)
+    bool Prot::validate() const {
+        for (char c : sequence) {
+            bool found = false;
+            for (auto& pair : codonTable) {
+                if (pair.second == c) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) return false;
+        }
+        return true;
+    }
+
+    // Override getCompMap (Proteins have no complementary mapping)
+    unordered_map<char, char> Prot::getCompMap() const {
+        return {}; // Return an empty map since proteins lack complementarity
     }
 }
