@@ -15,4 +15,9 @@ add_executable(cpp_ABC ${SOURCES}
         libs/RNA.cpp
         libs/Prot.h
         libs/Prot.cpp
+        libs/SUBS.h
+        libs/SUBS.cpp
+        libs/HAMM.h
+        libs/HAMM.cpp
+        
 )
