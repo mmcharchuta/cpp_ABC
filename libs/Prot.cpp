@@ -3,6 +3,7 @@
 using namespace std; // Allow direct use of standard library components (e.g., string, unordered_map, cout).
 
 namespace seq {
+
     // Initialize the codon table
     void Prot::initializeCodonTable() {
         codonTable = {

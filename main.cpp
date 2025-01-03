@@ -52,10 +52,23 @@ int main() {
         cout << "Hamming Distance: " << result << endl;
     }
 
+    // SPLC test
+    SPLC splc;
+    splc.setSequence("ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG");
+
+    vector<string> introns = {
+        "ATCGGTCGAA",
+        "ATCGGTCGAGCGTGT"
+    };
+
+    string protein = splc.spliceAndTranslate(introns);
+    cout << "Protein: " << protein << endl;
 
     return 0;
 }
 
+
+  
 
 
 

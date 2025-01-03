@@ -19,5 +19,7 @@ add_executable(cpp_ABC ${SOURCES}
         libs/SUBS.cpp
         libs/HAMM.h
         libs/HAMM.cpp
+        libs/SPLC.h
+        libs/SPLC.cpp
         
 )
