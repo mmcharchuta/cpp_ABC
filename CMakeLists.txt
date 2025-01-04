@@ -21,5 +21,7 @@ add_executable(cpp_ABC ${SOURCES}
         libs/HAMM.cpp
         libs/SPLC.h
         libs/SPLC.cpp
+        libs/TRAN.cpp
+        libs/TRAN.h
         
 )
