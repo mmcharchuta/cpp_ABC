@@ -2,6 +2,8 @@
 #include "RNA.h"
 #include "Prot.h"
 #include "SUBS.h"
+#include "SPLC.h"
+#include "HAMM.h"
 
 using namespace std; // Use standard library components directly
 using namespace seq;
@@ -35,7 +37,28 @@ int main() {
     }
     cout << endl;
 
+
+    //HAMM test
+    string s = "GAGCCTACTAACGGGAT";
+    string t = "CATCGTAATGACGGCCT";
+
+    HAMM hamm;
+    hamm.setSequence(s);
+    int result = hamm.calculateHammingDistance(t);
+
+    if (result == -1) {
+        cout << "Error: Invalid DNA sequence or sequences of different lengths.\n";
+    } else {
+        cout << "Hamming Distance: " << result << endl;
+    }
+
+
     return 0;
 }
+
+
+
+
+
 
 
