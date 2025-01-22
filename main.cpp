@@ -1,6 +1,7 @@
 #include <iostream>
 #include "RNA.h"
 #include "Prot.h"
+#include "SUBS.h"
 
 using namespace std; // Use standard library components directly
 using namespace seq;
@@ -20,5 +21,21 @@ int main() {
     cout << "Protein: " << protSeq.getSequence() << endl; // Retrieve from Prot
     cout << "Valid: " << protSeq.validate() << endl;
 
+    // SUBS test
+    SUBS subsSeq;
+    subsSeq.setSequence("GATATATGCATATACTT"); 
+
+    string motif = "ATAT"; 
+    vector<int> positions = subsSeq.findMotif(motif);
+
+    
+    cout << "Motif positions: ";
+    for (int pos : positions) {
+        cout << pos << " ";
+    }
+    cout << endl;
+
     return 0;
 }
+
+
