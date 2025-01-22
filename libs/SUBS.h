@@ -8,14 +8,13 @@
 using namespace std;
 
 namespace seq {
-    class SUBS : public DNA {
+    class SUBS : public virtual DNA {
     public:
-        SUBS(); 
-
+        SUBS();
         vector<int> findMotif(const string& motif);
-
         bool validate() const override;
+        std::unordered_map<char, char> getCompMap() const override;
     };
 }
 
-#endif 
+#endif // SUBS_H

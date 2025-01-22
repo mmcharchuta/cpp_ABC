@@ -4,11 +4,11 @@
 #include "Seq.h"
 
 namespace seq {
-    class DNA : public Seq {
+    class DNA : public virtual Seq {
     public:
         DNA();
-        bool validate() const override;
-        unordered_map<char, char> getCompMap() const override;
+        bool validate() const override; 
+        unordered_map<char, char> getCompMap() const override; 
         string toRNA() const;
     };
 }
