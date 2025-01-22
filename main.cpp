@@ -4,6 +4,7 @@
 #include "SUBS.h"
 #include "SPLC.h"
 #include "HAMM.h"
+#include "TRAN.h"
 
 using namespace std; // Use standard library components directly
 using namespace seq;
@@ -63,6 +64,34 @@ int main() {
 
     string protein = splc.spliceAndTranslate(introns);
     cout << "Protein: " << protein << endl;
+
+    //TRAN test
+    using namespace seq;
+
+    TRAN tran;
+
+
+    string seq1 = "GCAACGCACAACGAAAACCCTTAGGGACTGGATTATTTCGTGATCGTTGTAGTTATTGGA";
+    string seq2 = "TTATCTGACAAAGAAAGCCGTCAACGGCTGGATAATTTCGCGATCGTGCTGGTTACTGGC";
+
+    tran.setSequence(seq1);
+    auto trans1 = tran.calculateTransitionTransversion(seq2);
+
+
+    string seq3 = "AGTACGGGCATCAACCCAGTT";
+    string seq4 = "GGTACGAGTGTTCCTTTGGGT";
+
+    tran.setSequence(seq3);
+    auto trans2 = tran.calculateTransitionTransversion(seq4);
+
+    // Sum
+    int totalTrans = trans1.first + trans2.first;
+    int totalTransv = trans1.second + trans2.second;
+
+
+    double ratio = static_cast<double>(totalTrans) / totalTransv;
+
+    cout << "Transition/Transversion Ratio: " << ratio << endl;
 
     return 0;
 }
