@@ -5,11 +5,23 @@
 #include "SPLC.h"
 #include "HAMM.h"
 #include "TRAN.h"
+#include "DNA.h"
+#include "CONS_PDST.h"
+
 
 using namespace std; // Use standard library components directly
 using namespace seq;
 
 int main() {
+    // Count nucleotides
+    DNA dnaseq;
+    dnaseq.setSequence("TTGCGTCGTGCT");
+    cout << "Sequence: " << dnaseq.getSequence() << endl;
+    for (const auto &pair: dnaseq.count()) {
+        cout << "Nucleotide: " << pair.first << ", Count: " << pair.second << endl;
+    }
+    // Get RNA sequence
+    cout << "RNA sequence: " << dnaseq.toRNA() << endl;
     // Initialize RNA sequence
     RNA rnaSeq;
     rnaSeq.setSequence("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA");
@@ -26,14 +38,14 @@ int main() {
 
     // SUBS test
     SUBS subsSeq;
-    subsSeq.setSequence("GATATATGCATATACTT"); 
+    subsSeq.setSequence("GATATATGCATATACTT");
 
-    string motif = "ATAT"; 
+    string motif = "ATAT";
     vector<int> positions = subsSeq.findMotif(motif);
 
-    
+
     cout << "Motif positions: ";
-    for (int pos : positions) {
+    for (int pos: positions) {
         cout << pos << " ";
     }
     cout << endl;
@@ -55,7 +67,8 @@ int main() {
 
     // SPLC test
     SPLC splc;
-    splc.setSequence("ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG");
+    splc.setSequence(
+        "ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG");
 
     vector<string> introns = {
         "ATCGGTCGAA",
@@ -93,14 +106,33 @@ int main() {
 
     cout << "Transition/Transversion Ratio: " << ratio << endl;
 
+    // Consensus profile
+    vector<string> samples = {
+        "ATCCAGCT", "GGGCAACT", "ATGGATCT",
+        "AAGCAACC", "TTGGAACT", "ATGCCATT", "ATGGCACT"
+    };
+    MSA cons;
+    cons.setSequences(samples);
+    for (const auto &pair : cons.createProfileMatrix()) {
+        std::cout << "Nucleotide: " << pair.first << ", Counts: ";
+        for (int count : pair.second) {
+            std::cout << count << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "Consensus: " << cons.consensusString() << std::endl;
+
+    // Distance Matrix
+    samples = {"TTTCCATTTA", "GATTCATTTC", "TTTCCATTTT", "GTTCCATTTA"};
+    vector<std::vector<float>> distanceM;
+    cons.setSequences(samples);
+    distanceM = cons.createDistanceMatrix();
+    for (int i = 0; i < distanceM.size(); i++) {
+        for (int j = 0; j < distanceM[i].size(); j++) {
+            std::cout << distanceM[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
     return 0;
 }
-
-
-  
-
-
-
-
-
-
