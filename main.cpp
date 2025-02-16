@@ -6,8 +6,8 @@
 #include "HAMM.h"
 #include "TRAN.h"
 #include "DNA.h"
-#include "CONS.h"
-#include "PDST.h"
+#include "CONS_PDST.h"
+
 
 using namespace std; // Use standard library components directly
 using namespace seq;
@@ -111,8 +111,9 @@ int main() {
         "ATCCAGCT", "GGGCAACT", "ATGGATCT",
         "AAGCAACC", "TTGGAACT", "ATGCCATT", "ATGGCACT"
     };
-    Cons cons;
-    for (const auto &pair : cons.profileMatrix(samples)) {
+    MSA cons;
+    cons.setSequences(samples);
+    for (const auto &pair : cons.createProfileMatrix()) {
         std::cout << "Nucleotide: " << pair.first << ", Counts: ";
         for (int count : pair.second) {
             std::cout << count << " ";
@@ -123,9 +124,9 @@ int main() {
 
     // Distance Matrix
     samples = {"TTTCCATTTA", "GATTCATTTC", "TTTCCATTTT", "GTTCCATTTA"};
-    PDST pdst;
     vector<std::vector<float>> distanceM;
-    distanceM = pdst.createDistanceMatrix(samples);
+    cons.setSequences(samples);
+    distanceM = cons.createDistanceMatrix();
     for (int i = 0; i < distanceM.size(); i++) {
         for (int j = 0; j < distanceM[i].size(); j++) {
             std::cout << distanceM[i][j] << " ";
