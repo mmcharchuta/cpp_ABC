@@ -23,5 +23,9 @@ add_executable(cpp_ABC ${SOURCES}
         libs/SPLC.cpp
         libs/TRAN.cpp
         libs/TRAN.h
-        
+        libs/CONS.cpp
+        libs/CONS.h
+        libs/PDST.cpp
+        libs/PDST.h
+
 )
