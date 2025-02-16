@@ -127,6 +127,7 @@ int main() {
     vector<std::vector<float>> distanceM;
     cons.setSequences(samples);
     distanceM = cons.createDistanceMatrix();
+    cout << "Distance matrix: " << endl;
     for (int i = 0; i < distanceM.size(); i++) {
         for (int j = 0; j < distanceM[i].size(); j++) {
             std::cout << distanceM[i][j] << " ";
