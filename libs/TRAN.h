@@ -19,6 +19,7 @@ namespace seq {
 
         bool isTransition(char a, char b) const;
         bool isTransversion(char a, char b) const;
+        void calculateRatio(const string& seq1, const string& seq2, const string& seq3, const string& seq4);
     };
 }
 

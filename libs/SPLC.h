@@ -9,16 +9,13 @@ using namespace std;
 
 namespace seq {
 
-    class SPLC : public virtual DNA, public virtual Prot, public virtual SUBS {
+    class SPLC : public virtual Prot, public virtual SUBS {
     public:
-        SPLC();  
-
-        void setSequence(const string& sequence);  
+        SPLC();          
         bool validate() const override;          
         unordered_map<char, char> getCompMap() const override;  
+        string spliceAndTranslate(const vector<string>& introns); 
 
-        
-        string spliceAndTranslate(const vector<string>& introns);
     };
 }
 

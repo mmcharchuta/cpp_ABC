@@ -4,19 +4,17 @@ using namespace std;
 
 namespace seq {
 
-    SPLC::SPLC() : DNA(), Prot(), SUBS() {}
+    SPLC::SPLC() : Prot(), SUBS() {}
 
-    void SPLC::setSequence(const string& sequence) {
-        DNA::setSequence(sequence); //DNA's method to set sequence
-    }
 
     bool SPLC::validate() const {
         return DNA::validate(); //DNA's validation logic
     }
 
     unordered_map<char, char> SPLC::getCompMap() const {
-        return DNA::getCompMap();
-    }
+    return {};  
+    }//Not used
+    
 
     //to splice introns and translate exons into a protein string
     string SPLC::spliceAndTranslate(const vector<string>& introns) {

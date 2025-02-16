@@ -25,5 +25,6 @@ add_executable(cpp_ABC ${SOURCES}
         libs/TRAN.h
         libs/CONS_PDST.cpp
         libs/CONS_PDST.h
-
+        libs/KMER.cpp
+        libs/KMER.h
 )

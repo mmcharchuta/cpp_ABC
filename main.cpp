@@ -6,6 +6,7 @@
 #include "HAMM.h"
 #include "TRAN.h"
 #include "DNA.h"
+#include "KMER.h"
 #include "CONS_PDST.h"
 
 
@@ -36,20 +37,18 @@ int main() {
     cout << "Protein: " << protSeq.getSequence() << endl; // Retrieve from Prot
     cout << "Valid: " << protSeq.validate() << endl;
 
-    // SUBS test
+        // SUBS test
     SUBS subsSeq;
-    subsSeq.setSequence("GATATATGCATATACTT");
+    subsSeq.setSequence("GATATATGCATATACTT"); 
 
-    string motif = "ATAT";
+    string motif = "ATAT"; 
     vector<int> positions = subsSeq.findMotif(motif);
 
-
     cout << "Motif positions: ";
-    for (int pos: positions) {
+    for (int pos : positions) {
         cout << pos << " ";
     }
     cout << endl;
-
 
     //HAMM test
     string s = "GAGCCTACTAACGGGAT";
@@ -67,8 +66,7 @@ int main() {
 
     // SPLC test
     SPLC splc;
-    splc.setSequence(
-        "ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG");
+    splc.setSequence("ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG");
 
     vector<string> introns = {
         "ATCGGTCGAA",
@@ -78,33 +76,28 @@ int main() {
     string protein = splc.spliceAndTranslate(introns);
     cout << "Protein: " << protein << endl;
 
-    //TRAN test
-    using namespace seq;
-
+    // TRAN test
     TRAN tran;
-
 
     string seq1 = "GCAACGCACAACGAAAACCCTTAGGGACTGGATTATTTCGTGATCGTTGTAGTTATTGGA";
     string seq2 = "TTATCTGACAAAGAAAGCCGTCAACGGCTGGATAATTTCGCGATCGTGCTGGTTACTGGC";
 
-    tran.setSequence(seq1);
-    auto trans1 = tran.calculateTransitionTransversion(seq2);
-
-
     string seq3 = "AGTACGGGCATCAACCCAGTT";
     string seq4 = "GGTACGAGTGTTCCTTTGGGT";
 
-    tran.setSequence(seq3);
-    auto trans2 = tran.calculateTransitionTransversion(seq4);
+    tran.calculateRatio(seq1, seq2, seq3, seq4);
 
-    // Sum
-    int totalTrans = trans1.first + trans2.first;
-    int totalTransv = trans1.second + trans2.second;
+    //KMER test
+    KMER kmerTest;
+    kmerTest.setSequence("CTTCGAAAGTTTGGGCCGAGTCTTACAGTCGGTCTTGAAGCAAAGTAACGAACTCCACGGCCCTGACTACCGAACCAGTTGTGAGTACTCAACTGGGTGAGAGTGCAGTCCCTATTGAGTTTCCGAGACTCACCGGGATTTTCGATCCAGCCTCAGTCCAGTCTTGTGGCCAACTCACCAAATGACGTTGGAATATCCCTGTCTAGCTCACGCAGTACTTAGTAAGAGGTCGCTGCAGCGGGGCAAGGAGATCGGAAAATGTGCTCTATATGCGACTAAAGCTCCTAACTTACACGTAGACTTGCCCGTGTTAAAAACTCGGCTCACATGCTGTCTGCGGCTGGCTGTATACAGTATCTACCTAATACCCTTCAGTTCGCCGCACAAAAGCTGGGAGTTACCGCGGAAATCACAG");
 
+    vector<int> kmerCounts = kmerTest.countKMers(4); 
 
-    double ratio = static_cast<double>(totalTrans) / totalTransv;
-
-    cout << "Transition/Transversion Ratio: " << ratio << endl;
+    cout << "KMER counts: ";
+    for (int count : kmerCounts) {
+        cout << count << " ";
+    }
+    cout << endl;
 
     // Consensus profile
     vector<string> samples = {

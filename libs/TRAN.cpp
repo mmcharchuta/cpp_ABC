@@ -1,5 +1,5 @@
 #include "TRAN.h"
-
+#include <iostream>
 using namespace std;
 
 namespace seq {
@@ -12,7 +12,7 @@ namespace seq {
     }
 
     unordered_map<char, char> TRAN::getCompMap() const {
-        return HAMM::getCompMap(); 
+        return HAMM::getCompMap(); //not used
     }
 
     // transition check
@@ -53,5 +53,27 @@ namespace seq {
 
         return {transitions, transversions};
     }
+    void TRAN::calculateRatio(const string& seq1, const string& seq2, const string& seq3, const string& seq4) {
+        // First pair(longer)
+        setSequence(seq1);
+        auto trans1 = calculateTransitionTransversion(seq2);
+
+        // Second pair
+        setSequence(seq3);
+        auto trans2 = calculateTransitionTransversion(seq4);
+
+        // Suma 
+        int totalTransitions = trans1.first + trans2.first;
+        int totalTransversions = trans1.second + trans2.second;
+
+        // Ratio
+        double ratio = 1.0*totalTransitions / totalTransversions;
+
+
+    
+        cout << "Transition/Transversion Ratio: " << ratio << endl;
+    }
+
+
 
 } // namespace seq

@@ -11,9 +11,9 @@ namespace seq {
     class SUBS : public virtual DNA {
     public:
         SUBS();
-        vector<int> findMotif(const string& motif);
+        vector<int> findMotif(const string& motif) const;
         bool validate() const override;
-        std::unordered_map<char, char> getCompMap() const override;
+        
     };
 }
 
