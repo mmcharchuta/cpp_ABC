@@ -55,6 +55,11 @@ namespace seq {
         for (char base : sequence) {
             charCount[base]++;
         }
+        for (const auto& pair : compMap) {
+            if (charCount.find(pair.first) == charCount.end()) {
+                charCount[pair.first] = 0;
+            }
+        }
         return charCount;
     }
 
